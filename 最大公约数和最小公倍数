@@ -1,0 +1,30 @@
+//最大公约数和最小公倍数
+#include<stdio.h>
+int main() {
+	int a,  b,  result_gys,  result_gbs;
+	printf("请输入两个整数用逗号隔开:\n");
+	scanf("%d,%d", &a, &b);
+	result_gys = gys(a, b);
+	result_gbs = gbs(a, b);
+	printf("%d和%d的最大公约数为%d\n", a, b, result_gys);
+	printf("%d和%d的最小公倍数为%d\n", a, b, result_gbs);
+	return 0;
+}
+int gys(int x, int y)
+{
+	int temp, r;
+	if (x < y) {
+		temp = x; x = y; y = temp;
+	}
+	if (x == y)
+		return x;
+	r = x % y;
+	while (r != 0)
+	{
+		x = y; y = r; r = x % y;
+	}
+	return y;
+}
+int gbs(int x, int y) {
+	return (x * y) / gys(x, y);
+}
